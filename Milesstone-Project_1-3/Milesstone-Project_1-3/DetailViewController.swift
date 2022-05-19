@@ -34,6 +34,9 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         title = "\(selectedPictureNumber) of \(totalPictures)"
+        navigationItem.largeTitleDisplayMode = .never
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareApp))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,4 +51,10 @@ class DetailViewController: UIViewController {
 
    
 
+    @objc func shareApp() {
+        let link = "https://github.com/Shadvonic/Milesstone-Project_1-3/tree/main/Milesstone-Project_1-3"
+        let vc = UIActivityViewController(activityItems: [link], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
+    }
 }
